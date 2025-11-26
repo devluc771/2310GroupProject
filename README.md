@@ -1,5 +1,6 @@
 # UML Diagram
-<img width="741" height="964" alt="GroupProjectUML" src="https://github.com/user-attachments/assets/1b9e79f5-9876-455a-a702-569d6becb8a2" />
+<img width="741" height="964" alt="GroupProjectUML" src="https://github.com/user-attachments/assets/e59966c1-b77a-4c2b-9da3-b510690c74f2" />
+
 
 
 # UML Explanation
