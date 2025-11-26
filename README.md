@@ -10,39 +10,38 @@ SensorSimulator Purpose: Simulates multiple IoT sensors generating data, useful 
 Hub Purpose: Central processing unit that receives data from all sensors, performs temperature conversion, and routes data for output.  
 
 ***
-## Key Classes and Attributes
 
-### SensorData
+## Main Data Object: SensorData
 
-- **Attributes:**  
-  - `ts`: Unix timestamp (seconds since 1970)  
-  - `device`: Unique device ID (MAC address of the IoT sensor)  
-  - `co`, `humidity`, `light`, `lpg`, `motion`, `smoke`, `temp`: Sensor readings
+- **Has:**  
+  - `ts`: When the reading happened (timestamp)  
+  - `device`: Which sensor sent it (like a MAC address)  
+  - Readings: `co`, `humidity`, `light`, `lpg`, `motion`, `smoke`, `temp`
 
-- **Methods:**  
-  - `parseRow(row: string)`: Converts a CSV row to a `SensorData` object  
-  - Getter methods for each attribute
-
-***
-
-### Relationship Table
-
-| From            | To          | Relationship Type      | Meaning / Role in System                              |
-|-----------------|-------------|-----------------------|-------------------------------------------------------|
-| DataReader      | SensorData  | Association (Creates) | Creates SensorData objects from CSV file rows         |
-| SensorSimulator | SensorData  | Association (Creates) | Creates SensorData objects with simulated values      |
-| Hub             | SensorData  | Aggregation           | Maintains a collection (vector) of SensorData objects |
-| Hub             | DataWriter  | Association (Uses)    | Sends processed data to DataWriter for output         |
-| DataWriter      | SensorData  | Association (Uses)    | Uses SensorData objects to generate output files      |
-| Hub             | DataReader  | Association (Uses)    | Utilizes DataReader to obtain sensor data             |
+- **Can Do:**  
+  - `parseRow(row)`: Takes a line from a CSV and turns it into a SensorData object  
+  - Getters: Lets you access each value
 
 ***
 
-## Relationship Details
+## How The Parts Connect
 
-- **Association (Creates/Uses):** Shows creation or direct usage of objects from another class.
-- **Aggregation:** Indicates that the Hub maintains a group of SensorData objects, which exist independently of the Hub.
-- **Direction:** Arrows point from the class that uses/aggregates/creates toward the class it interacts with.
+| From   | To         | Type            | What It Means                                      |
+|--------|------------|-----------------|----------------------------------------------------|
+| DataReader | SensorData | Makes          | Reads file and makes SensorData objects             |
+| SensorSimulator | SensorData | Makes       | Makes fake SensorData objects for testing           |
+| Hub    | SensorData | Groups Together | Hub keeps a bunch of SensorData objects             |
+| Hub    | DataWriter | Sends To        | Hub gives processed data to DataWriter for saving   |
+| DataWriter | SensorData | Uses           | DataWriter uses SensorData to make files            |
+| Hub    | DataReader | Reads From      | Hub uses DataReader to get sensor data from files   |
+
+***
+
+## More Detail on Connections
+
+- **Makes / Uses**: Means a part either creates something or works with it directly.
+- **Groups Together**: Means the Hub keeps a bunch of data objects, kind of like a collection or list.
+- **Direction**: Just shows which part starts things (like, DataReader makes SensorData).
 
 ***
 
