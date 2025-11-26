@@ -45,4 +45,3 @@ Hub Purpose: Central processing unit that receives data from all sensors, perfor
 
 ***
 
-<img width="745" height="442" alt="image" src="https://github.com/user-attachments/assets/490f161a-ec5b-4f3f-8dd0-1bc7201138ee" />
