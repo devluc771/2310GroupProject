@@ -16,6 +16,7 @@ class SensorData
         double getMotion() const;
         double getSmoke() const;
         double getTemp() const;
+        void setTemp(double t);
         bool getLpg() const;
 
     private:

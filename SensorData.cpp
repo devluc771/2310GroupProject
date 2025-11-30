@@ -11,8 +11,8 @@ void SensorData::parseRow(string row) //Used ChatGPT to help create parseRow to 
     string value;
 
     // timestamp
-    getline(ss, value, ',');
-    ts = stod(value);
+    getline(ss, value, ',');  //reads everything until a comma and stores into value
+    ts = stod(value); //converts value from a string to a double
 
     // device
     getline(ss, value, ',');
@@ -86,7 +86,10 @@ double SensorData::getTemp() const
 {
     return temp;
 }
-
+void SensorData::setTemp(double t)
+{
+    temp = t;
+}
 double SensorData::getCo() const
 {
     return co;
