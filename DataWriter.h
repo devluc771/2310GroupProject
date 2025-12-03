@@ -19,8 +19,8 @@ public:
     void closeFile();
     void writeData(const SensorData& data);
     void writeByDevice(const string& deviceId, const vector<SensorData>& dataVec);
-
+    
 };
-void writeOutputFiles(const vector<SensorData>& data);
+    void writeOutputFiles(const vector<SensorData>& data);
 
 #endif

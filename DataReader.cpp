@@ -45,7 +45,8 @@ vector<SensorData> DataReader::readData()
             data.parseRow(line);
             dataList.push_back(data);
         }
-        catch (const exception& e) {
+        catch (const exception& e) 
+        {
             cerr << "Skipping bad row:\n" << line << "\nError: " << e.what() << endl;
         }
     }

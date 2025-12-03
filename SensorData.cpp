@@ -5,9 +5,9 @@ SensorData::SensorData() : ts(0), co(0), humidity(0), light(false), lpg(0), moti
 {
 }
 
-void SensorData::parseRow(string row)
-{
-    stringstream ss(row);
+void SensorData::parseRow(string row) //used ChatGPT, it removes the quotation marks (strip) from all of the data, and then it stores them into 
+{                                     //the SensorData object
+    stringstream ss(row);       
     string value;
 
     auto strip = [](string &s) {
@@ -61,7 +61,7 @@ void SensorData::parseRow(string row)
     temp = stod(value);
 }
 
-double SensorData::getTs() const
+double SensorData::getTs() const //accessors
 {
     return ts;
 }
