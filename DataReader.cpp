@@ -29,7 +29,7 @@ vector<SensorData> DataReader::readData()
 
     string line;
 
-    // ✅ SKIP HEADER ROW
+    // skips header row
     if (!getline(file, line)) {
         return dataList;
     }
