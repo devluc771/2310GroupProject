@@ -1,53 +1,67 @@
 #include "SensorData.h"
 #include <sstream>
 
-SensorData::SensorData() : ts(0), co(0), humidity(0), light(0), lpg(false), motion(0), smoke(0), temp(0) //default constructor where everything is blank
+SensorData::SensorData() : ts(0), co(0), humidity(0), light(false), lpg(0), motion(false), smoke(0), temp(0) //default constructor where everything is blank
 {
 }
 
-void SensorData::parseRow(string row) //Used ChatGPT to help create parseRow to read a row from the .csv and convert it into a SensorDate object
+void SensorData::parseRow(string row)
 {
     stringstream ss(row);
     string value;
 
+    auto strip = [](string &s) {
+        if (!s.empty() && s.front() == '"')  s.erase(0, 1);
+        if (!s.empty() && s.back() == '"')   s.pop_back();
+    };
+
     // timestamp
-    getline(ss, value, ',');  //reads everything until a comma and stores into value
-    ts = stod(value); //converts value from a string to a double
+    getline(ss, value, ',');
+    strip(value);
+    ts = stod(value);
 
     // device
     getline(ss, value, ',');
+    strip(value);
     device = value;
 
     // co
     getline(ss, value, ',');
+    strip(value);
     co = stod(value);
 
     // humidity
     getline(ss, value, ',');
+    strip(value);
     humidity = stod(value);
 
     // light
     getline(ss, value, ',');
-    light = stod(value);
+    strip(value);
+    light = (value == "true" || value == "TRUE" || value == "1");
 
-    // lpg (0 or 1)
+    // lpg
     getline(ss, value, ',');
-    lpg = (value == "1");
+    strip(value);
+    lpg = stod(value);
 
     // motion
     getline(ss, value, ',');
-    motion = stod(value);
+    strip(value);
+    motion = (value == "true" || value == "TRUE" || value == "1");
 
     // smoke
     getline(ss, value, ',');
+    strip(value);
     smoke = stod(value);
 
     // temp
     getline(ss, value, ',');
+    strip(value);
     temp = stod(value);
 }
 
-long long SensorData::getTs() const
+double SensorData::getTs() const
 {
     return ts;
 }
@@ -62,17 +76,17 @@ double SensorData::getHumidity() const
     return humidity;
 }
 
-double SensorData::getLight() const
+bool SensorData::getLight() const
 {
     return light;
 }
 
-bool SensorData::getLpg() const
+double SensorData::getLpg() const
 {
     return lpg;
 }
 
-double SensorData::getMotion() const
+bool SensorData::getMotion() const
 {
     return motion;
 }

@@ -28,14 +28,26 @@ vector<SensorData> DataReader::readData()
     }
 
     string line;
+
+    // ✅ SKIP HEADER ROW
+    if (!getline(file, line)) {
+        return dataList;
+    }
+
     while (getline(file, line))
     {
         if (line.empty())
             continue;
 
         SensorData data;
-        data.parseRow(line);     // convert CSV line into SensorData object
-        dataList.push_back(data);
+
+        try {
+            data.parseRow(line);
+            dataList.push_back(data);
+        }
+        catch (const exception& e) {
+            cerr << "Skipping bad row:\n" << line << "\nError: " << e.what() << endl;
+        }
     }
 
     closeFile();

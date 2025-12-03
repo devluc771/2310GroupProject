@@ -8,25 +8,25 @@ class SensorData
     public:
         SensorData(); //SensorData Constructor
         void parseRow(string row);  //takes a line from the CSV and turns it into a SensorData object
-        long long getTs() const;       //accessors
+        double getTs() const;       //accessors
         string getDevice() const;
         double getHumidity() const;
         double getCo() const;
-        double getLight() const;
-        double getMotion() const;
+        bool getLight() const;
+        bool getMotion() const;
         double getSmoke() const;
         double getTemp() const;
         void setTemp(double t);
-        bool getLpg() const;
+        double getLpg() const;
 
     private:
-        long long ts; //timestamp
+        double ts; //timestamp
         string device; //device ID
         double co;
         double humidity;
-        double light;
-        bool lpg;
-        double motion;
+        bool light;
+        double lpg;
+        bool motion;
         double smoke;
         double temp;
 };
