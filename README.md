@@ -1,12 +1,12 @@
 # UML Diagram
-<img width="741" height="964" alt="GroupProjectUML" src="https://github.com/user-attachments/assets/e59966c1-b77a-4c2b-9da3-b510690c74f2" />
 
+<img width="751" height="1014" alt="GroupProjectUML" src="https://github.com/user-attachments/assets/80dc9f40-8ba2-4054-8d45-85ea92a9e74a" />
 
 
 # UML Explanation
 DataReader Purpose: Responsible for reading the IoT sensor data from CSV files.  
 DataWriter Purpose: Writes processed sensor data to output files, creating separate files for each device.   
-SensorSimulator Purpose: Simulates multiple IoT sensors generating data, useful for testing the system without real hardware.  
+Removed: SensorSimulator Purpose: Simulates multiple IoT sensors generating data, useful for testing the system without real hardware.  
 Hub Purpose: Central processing unit that receives data from all sensors, performs temperature conversion, and routes data for output.  
 
 ***
@@ -29,7 +29,6 @@ Hub Purpose: Central processing unit that receives data from all sensors, perfor
 | From   | To         | Type            | What It Means                                      |
 |--------|------------|-----------------|----------------------------------------------------|
 | DataReader | SensorData | Makes          | Reads file and makes SensorData objects             |
-| SensorSimulator | SensorData | Makes       | Makes fake SensorData objects for testing           |
 | Hub    | SensorData | Groups Together | Hub keeps a bunch of SensorData objects             |
 | Hub    | DataWriter | Sends To        | Hub gives processed data to DataWriter for saving   |
 | DataWriter | SensorData | Uses           | DataWriter uses SensorData to make files            |
