@@ -100,10 +100,6 @@ double SensorData::getTemp() const
 {
     return temp;
 }
-void SensorData::setTemp(double t)
-{
-    temp = t;
-}
 double SensorData::getCo() const
 {
     return co;
